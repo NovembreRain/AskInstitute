@@ -1,0 +1,19 @@
+{
+  "name": "ask-institute-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev:frontend": "PORT=5173 BASE_PATH=/ pnpm --filter @workspace/ask-institute dev",
+    "dev:backend": "PORT=5001 pnpm --filter @workspace/api-server dev",
+    "dev:sandbox": "PORT=5174 BASE_PATH=/ pnpm --filter @workspace/mockup-sandbox dev",
+    "build": "PORT=5173 BASE_PATH=/ pnpm -r build",
+    "codegen": "pnpm --filter @workspace/api-spec codegen",
+    "typecheck:libs": "pnpm exec tsc -p lib/api-zod/tsconfig.json --noEmit && pnpm exec tsc -p lib/api-client-react/tsconfig.json --noEmit && pnpm exec tsc -p lib/db/tsconfig.json --noEmit",
+    "typecheck": "pnpm exec tsc -p artifacts/ask-institute/tsconfig.json --noEmit && pnpm exec tsc -p artifacts/mockup-sandbox/tsconfig.json --noEmit && pnpm exec tsc -p scripts/tsconfig.json --noEmit && pnpm run typecheck:libs",
+    "db:push": "pnpm --filter @workspace/db push"
+  },
+  "devDependencies": {
+    "typescript": "catalog:"
+  }
+}
