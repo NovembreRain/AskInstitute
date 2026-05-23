@@ -5,9 +5,10 @@ import router from "./routes";
 import { logger } from "./lib/logger";
 
 const app: Express = express();
+const pinoHttpMiddleware = pinoHttp as any;
 
 app.use(
-  (pinoHttp as any)({
+  pinoHttpMiddleware({
     logger,
     serializers: {
       req(req) {
